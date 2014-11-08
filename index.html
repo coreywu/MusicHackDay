@@ -1,0 +1,18 @@
+<script src="jquery-1.11.1.js"></script>
+<script src="handlebars.min.js"></script>
+<script src="script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<div class="container">
+    <h1>Search for an Artist</h1>
+    <form id="search-form">
+        <input type="text" id="query" value="" class="form-control" />
+        <input type="submit" id="search" class="btn btn-primary" value="Search" />
+    </form>
+    <div id="results"></div>
+</div>
+<script id="results-template" type="text/x-handlebars-template">
+    {{#each albums.items}}
+    <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
+    {{/each}}
+</script>

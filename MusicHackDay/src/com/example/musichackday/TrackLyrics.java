@@ -1,6 +1,5 @@
 package com.example.musichackday;
 
-
 public class TrackLyrics {
     public Message message;
     

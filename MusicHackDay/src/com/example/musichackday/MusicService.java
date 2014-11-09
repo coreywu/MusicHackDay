@@ -93,6 +93,10 @@ MediaPlayer.OnCompletionListener, Serializable {
 
         player.prepareAsync();
     }
+    
+    public void resumeSong(){
+        player.start();
+    }
 
     public void setList(ArrayList<Song> theSongs){
         songs = theSongs;

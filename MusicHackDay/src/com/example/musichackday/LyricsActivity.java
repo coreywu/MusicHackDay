@@ -1,16 +1,27 @@
 package com.example.musichackday;
 
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class LyricsActivity extends Activity {
 
     private Song song;
+    int correctAnswer;
+    
+    TextView questionText;
+    Button button1;
+    Button button2;
+    Button button3;
+    Button button4;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +48,71 @@ public class LyricsActivity extends Activity {
 
         // TODO: Don't make this static.
         MainActivity.musicSrv.playSong();
+        
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        
+        button1.setOnClickListener(new OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                checkAnswer(1);
+            }    
+        });
+
+        button2.setOnClickListener(new OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                checkAnswer(2);
+            }    
+        });
+
+        button3.setOnClickListener(new OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                checkAnswer(3);
+            }     
+        });
+
+        button4.setOnClickListener(new OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                checkAnswer(4);
+            }    
+        });
+        
+        resetQuestion();
+    }
+    
+    public void checkAnswer(int answer) {
+        if (answer == correctAnswer) {
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+        }
+        
+        wait(500);
+        MainActivity.musicSrv.resumeSong();
+        
+        resetQuestion();
+    }
+    
+    public void resetQuestion() {
+//        questionText.setText(text);
+//        button1.setText(text);
+//        button2.setText(text);
+//        button3.setText(text);
+//        button4.setText(text);
+    }
+    
+    public void wait(int milliseconds) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+             // Actions to do after 10 seconds
+            }
+        }, milliseconds); 
     }
 
     @Override
@@ -63,4 +139,5 @@ public class LyricsActivity extends Activity {
         super.onPause();
         MainActivity.musicSrv.player.stop();
     }
+    
 }

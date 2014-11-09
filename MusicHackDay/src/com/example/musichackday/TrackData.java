@@ -18,18 +18,15 @@ public class TrackData {
     }
 
     public class Body {
-        public List<Track> track_list;
+        public List<Tracks> track_list;
     }
-    
-    public class TrackList {
-        public List<Track> track_list;
+    public class Tracks { 
+        public Track track;
     }
-    
     public class Track {
-        public int track_id;
+        public long track_id;
         public int has_lyrics;
     }
-
 
 }
 

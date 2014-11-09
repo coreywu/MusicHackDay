@@ -27,7 +27,9 @@ public class LyricsActivity extends Activity {
         TrackData trackData = NetworkParser.getTrackDataFromUrl(url);
         Log.wtf("url", "url: " + url);
 
-        String lyricsUrl = "http://api.musixmatch.com/ws/1.1/matcher.subtitle.get?track.subtitle.get?track_id=" + trackData.message.body.track_list.get(0).track_id + "&apikey=d8951a826384c648324e206c942b5cce";
+        Log.wtf("TRACKSIZE?", "TRACKSIZE?: " + trackData.message.body.track_list.size());
+        Log.wtf("TRACK_ID?", "TRACK_ID?: " + trackData.message.body.track_list.get(0).track.track_id);
+        String lyricsUrl = "http://api.musixmatch.com/ws/1.1/track.subtitle.get?track_id=" + trackData.message.body.track_list.get(0).track.track_id + "&apikey=d8951a826384c648324e206c942b5cce";
         TrackLyrics trackLyrics = NetworkParser.getTrackLyricsFromUrl(lyricsUrl);
         Log.wtf("url", "url: " + lyricsUrl);
 
